@@ -1,10 +1,9 @@
 package nesty.anzhy.todo.fragments.update
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import nesty.anzhy.todo.R
 
 import nesty.anzhy.todo.databinding.FragmentUpdateBinding
 
@@ -22,9 +21,13 @@ class UpdateFragment : Fragment() {
     ): View? {
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
 
+        //Set Menu
+        setHasOptionsMenu(true)
 
         return binding.root
     }
 
-
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.update_fragment_menu, menu)
+    }
 }

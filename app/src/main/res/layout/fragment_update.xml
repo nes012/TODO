@@ -8,7 +8,6 @@
     tools:context=".fragments.update.UpdateFragment">
 
 
-
     <EditText
         android:id="@+id/etCurrentTitleUpdate"
         android:layout_width="0dp"

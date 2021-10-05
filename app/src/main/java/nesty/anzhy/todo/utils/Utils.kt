@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 
 //we will call this function inside list fragment
-fun hideKeyBoard(activity: Activity){
+fun hideKeyBoard(activity: Activity) {
     val inputMethodManager =
         activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
@@ -20,8 +20,8 @@ fun hideKeyBoard(activity: Activity){
     }
 }
 
-fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>){
-    observe(lifecycleOwner, object : Observer<T>{
+fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    observe(lifecycleOwner, object : Observer<T> {
         override fun onChanged(t: T) {
             observer.onChanged(t)
             removeObserver(this)

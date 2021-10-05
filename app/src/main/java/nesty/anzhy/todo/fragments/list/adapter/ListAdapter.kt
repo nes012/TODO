@@ -1,14 +1,15 @@
-package nesty.anzhy.todo.fragments.list
+package nesty.anzhy.todo.fragments.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import nesty.anzhy.todo.data.models.ToDoData
 import nesty.anzhy.todo.databinding.RowLayoutBinding
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.VH>() {
 
-    private var dataList = emptyList<ToDoData>()
+     var dataList = emptyList<ToDoData>()
 
     class VH(var binding: RowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(toDoData: ToDoData) {
@@ -66,8 +67,11 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.VH>() {
     override fun getItemCount(): Int = dataList.size
 
 
-    fun setData(toDoData: List<ToDoData>) {
-        this.dataList = toDoData
-        notifyDataSetChanged()
+    fun setData(newListToDoData: List<ToDoData>) {
+        val diffUtil = ToDoDiffUtil(dataList, newListToDoData)
+        val toDoDiffResult = DiffUtil.calculateDiff(diffUtil)
+        this.dataList = newListToDoData
+        toDoDiffResult.dispatchUpdatesTo(this)
+        // notifyDataSetChanged()
     }
 }

@@ -75,5 +75,9 @@ class AddFragment : Fragment() {
         }
     }
 
-
+    //this way we will avoid memory leaks
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

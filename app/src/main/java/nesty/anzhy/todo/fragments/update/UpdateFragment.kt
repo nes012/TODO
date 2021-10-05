@@ -15,6 +15,9 @@ import nesty.anzhy.todo.databinding.FragmentUpdateBinding
 import nesty.anzhy.todo.fragments.SharedViewModel
 
 class UpdateFragment : Fragment() {
+
+    private val args by navArgs<UpdateFragmentArgs>()
+
     private var _binding: FragmentUpdateBinding? = null
     private val binding get() = _binding!!
 
@@ -22,25 +25,31 @@ class UpdateFragment : Fragment() {
 
     private val mSharedViewModel: SharedViewModel by viewModels()
 
+
     //UpdateFragmentArgs automatically generate by safeargs library
     //we're using this class to get data
-    private val args by navArgs<UpdateFragmentArgs>()
+    //private val args by navArgs<UpdateFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        val currentItem = args.currentItem
+
+        binding.args = currentItem
 
         //Set Menu
         setHasOptionsMenu(true)
 
 
-        binding.etCurrentTitleUpdate.setText(args.currentItem.title)
-        binding.etCurrentDescriptionUpdateFragment.setText(args.currentItem.description)
-        binding.spinnerCurrentUpdateFragment.setSelection(mSharedViewModel.parsePriorityToInt(args.currentItem.priority))
+        //binding.etCurrentTitleUpdate.setText(currentItem.title)
+       // binding.etCurrentDescriptionUpdateFragment.setText(currentItem.description)
+       // binding.spinnerCurrentUpdateFragment.setSelection(mSharedViewModel.parsePriorityToInt(currentItem.priority))
 
+        //Spinner item selected listener
         binding.spinnerCurrentUpdateFragment.onItemSelectedListener = mSharedViewModel.listener
+
         return binding.root
     }
 
@@ -110,5 +119,12 @@ class UpdateFragment : Fragment() {
             ).show()
         }
     }
+
+    //this way we will avoid memory leaks
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
 

@@ -32,23 +32,22 @@ class ListFragment : Fragment() {
     ): View? {
         _binding = FragmentListBinding.inflate(inflater, container, false)
 
-        binding.floatingActionButton.setOnClickListener{
-            findNavController().navigate(R.id.action_listFragment_to_addFragment)
-        }
+        binding.lifecycleOwner = this
+        binding.mSharedViewModel = mSharedViewModel
+
+        setupRecyclerView()
 
 
-
-        val recyclerView = binding.recyclerView
-        recyclerView.adapter = mAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-
+        //Observe LiveData
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, {toDoList->
             mSharedViewModel.checkIfDatabaseEmpty(toDoList)
             mAdapter.setData(toDoList)
         })
+        /*
         mSharedViewModel.emptyDatabase.observe(viewLifecycleOwner, Observer{
             showEmptyDatabaseViews(it)
         })
+         */
 
         //Set Menu. We also need to override method onCreateOptionsMenu. And in this method we need to inflate our new menu
         setHasOptionsMenu(true)
@@ -56,6 +55,13 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
+    private fun setupRecyclerView(){
+        val recyclerView = binding.recyclerView
+        recyclerView.adapter = mAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+    }
+
+    /*
     private fun showEmptyDatabaseViews(emptyDatabase: Boolean) {
        if(emptyDatabase){
            binding.tvNoData.visibility = View.VISIBLE
@@ -66,6 +72,7 @@ class ListFragment : Fragment() {
            binding.ivNoData.visibility = View.INVISIBLE
        }
     }
+     */
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -94,6 +101,12 @@ class ListFragment : Fragment() {
         builder.setTitle("Delete everything?")
         builder.setMessage("Are you sure you want to remove everything?")
         builder.create().show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //this way we will avoid memory leaks
+        _binding = null
     }
 
 }

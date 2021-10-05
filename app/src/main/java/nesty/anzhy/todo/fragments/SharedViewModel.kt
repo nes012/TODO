@@ -37,10 +37,7 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
 
     fun verifyDataFromUser(title: String, description: String): Boolean{
         //we will check here if our data not empty before adding to DB
-        return if(TextUtils.isEmpty(title)|| TextUtils.isEmpty(description)){
-            false
-        }
-        else !(title.isEmpty()||description.isEmpty())
+        return !(title.isEmpty()||description.isEmpty())
     }
 
      fun parsePriority(priority: String): Priority {

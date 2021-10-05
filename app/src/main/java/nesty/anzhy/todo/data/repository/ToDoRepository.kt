@@ -7,12 +7,15 @@ import nesty.anzhy.todo.data.models.ToDoData
 class ToDoRepository(private val toDoDAO: ToDoDAO) {
 
     val getAllData: LiveData<List<ToDoData>> = toDoDAO.getAllData()
+    fun sortByHighPriority(): LiveData<List<ToDoData>> = toDoDAO.sortByHighPriority()
+    fun sortByLowPriority(): LiveData<List<ToDoData>> = toDoDAO.sortByLowPriority()
 
-    suspend fun insertData(toDoData: ToDoData){
+
+    suspend fun insertData(toDoData: ToDoData) {
         toDoDAO.insertData(toDoData)
     }
 
-    suspend fun updateData(toDoData: ToDoData){
+    suspend fun updateData(toDoData: ToDoData) {
         toDoDAO.updateData(toDoData)
     }
 
@@ -20,7 +23,11 @@ class ToDoRepository(private val toDoDAO: ToDoDAO) {
         toDoDAO.deleteData(toDoData)
     }
 
-    suspend fun deleteAllData(){
+    suspend fun deleteAllData() {
         toDoDAO.deleteAllData()
+    }
+
+    fun searchDatabaseData(searchQuery: String): LiveData<List<ToDoData>> {
+        return toDoDAO.searchDatabaseData(searchQuery)
     }
 }

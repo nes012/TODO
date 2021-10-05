@@ -11,13 +11,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //1step.to show title and action bar of other fragments
-      // setupActionBarWithNavController(findNavController(R.id.navHostFragment))
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.navHostFragment) as NavHostFragment

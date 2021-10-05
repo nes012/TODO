@@ -16,12 +16,17 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: ToDoRepository
 
-     val getAllData: LiveData<List<ToDoData>>
+    val getAllData: LiveData<List<ToDoData>>
+    val sortByHighPriority: LiveData<List<ToDoData>>
+    val sortByLowPriority: LiveData<List<ToDoData>>
 
     init {
         repository = ToDoRepository(toDoDao)
         getAllData = repository.getAllData
+        sortByHighPriority = repository.sortByHighPriority()
+        sortByLowPriority = repository.sortByLowPriority()
     }
+
 
     fun insertData(toDoData: ToDoData) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -31,21 +36,25 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     //this function will run inside coroutine and on background thread
-    fun updateData(toDoData: ToDoData){
-        viewModelScope.launch(Dispatchers.IO){
+    fun updateData(toDoData: ToDoData) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.updateData(toDoData)
         }
     }
 
-    fun deleteData(toDoData: ToDoData){
+    fun deleteData(toDoData: ToDoData) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteData(toDoData)
         }
     }
 
-    fun deleteAll(){
+    fun deleteAll() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllData()
         }
+    }
+
+    fun searchDatabase(searchQuery: String): LiveData<List<ToDoData>> {
+        return repository.searchDatabaseData(searchQuery)
     }
 }

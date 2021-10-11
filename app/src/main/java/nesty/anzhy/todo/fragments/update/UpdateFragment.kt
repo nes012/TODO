@@ -18,6 +18,7 @@ class UpdateFragment : Fragment() {
 
     private val args by navArgs<UpdateFragmentArgs>()
 
+
     private var _binding: FragmentUpdateBinding? = null
     private val binding get() = _binding!!
 

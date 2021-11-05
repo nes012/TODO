@@ -1,4 +1,4 @@
-package nesty.anzhy.todo.data.viewmodel
+package nesty.anzhy.todo.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import nesty.anzhy.todo.data.ToDoDatabase
 import nesty.anzhy.todo.data.models.ToDoData
-import nesty.anzhy.todo.data.repository.ToDoRepository
+import nesty.anzhy.todo.repository.ToDoRepository
 
 class ToDoViewModel(application: Application) : AndroidViewModel(application) {
 

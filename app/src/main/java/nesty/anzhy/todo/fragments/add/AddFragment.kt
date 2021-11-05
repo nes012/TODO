@@ -1,20 +1,17 @@
 package nesty.anzhy.todo.fragments.add
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import nesty.anzhy.todo.R
-import nesty.anzhy.todo.data.models.Priority
 import nesty.anzhy.todo.data.models.ToDoData
-import nesty.anzhy.todo.data.viewmodel.ToDoViewModel
+import nesty.anzhy.todo.viewmodel.ToDoViewModel
 
 import nesty.anzhy.todo.databinding.FragmentAddBinding
-import nesty.anzhy.todo.databinding.FragmentListBinding
-import nesty.anzhy.todo.fragments.SharedViewModel
+import nesty.anzhy.todo.viewmodel.SharedViewModel
 
 class AddFragment : Fragment() {
 

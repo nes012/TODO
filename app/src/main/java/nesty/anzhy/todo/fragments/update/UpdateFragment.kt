@@ -10,9 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import nesty.anzhy.todo.R
 import nesty.anzhy.todo.data.models.ToDoData
-import nesty.anzhy.todo.data.viewmodel.ToDoViewModel
+import nesty.anzhy.todo.viewmodel.ToDoViewModel
 import nesty.anzhy.todo.databinding.FragmentUpdateBinding
-import nesty.anzhy.todo.fragments.SharedViewModel
+import nesty.anzhy.todo.viewmodel.SharedViewModel
 
 class UpdateFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package nesty.anzhy.todo.fragments
+package nesty.anzhy.todo.bindingadapters
 
 import android.view.View
 import android.widget.Spinner

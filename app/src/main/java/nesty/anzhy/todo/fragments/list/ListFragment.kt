@@ -12,9 +12,9 @@ import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.animators.*
 import nesty.anzhy.todo.R
 import nesty.anzhy.todo.data.models.ToDoData
-import nesty.anzhy.todo.data.viewmodel.ToDoViewModel
+import nesty.anzhy.todo.viewmodel.ToDoViewModel
 import nesty.anzhy.todo.databinding.FragmentListBinding
-import nesty.anzhy.todo.fragments.SharedViewModel
+import nesty.anzhy.todo.viewmodel.SharedViewModel
 import nesty.anzhy.todo.fragments.list.adapter.ListAdapter
 import nesty.anzhy.todo.fragments.list.adapter.SwipeToDelete
 import nesty.anzhy.todo.utils.hideKeyBoard

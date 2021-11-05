@@ -1,4 +1,4 @@
-package nesty.anzhy.todo.data.repository
+package nesty.anzhy.todo.repository
 
 import androidx.lifecycle.LiveData
 import nesty.anzhy.todo.data.ToDoDAO
